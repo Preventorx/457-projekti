@@ -1,0 +1,10 @@
+.game-container {
+    text-align: center;
+    background-image: "url('images/tausta.jpg')";
+    background-size: cover;
+    background-position: center;  
+}
+
+button {
+    cursor: crosshair;
+}
