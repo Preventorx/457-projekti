@@ -1,11 +1,11 @@
 document.addEventListener("DOMContetLoaded", () => {
-    const pisteetElement = document.getElementById("pisteet");
-    const klikkausElement = document.getElementById("klikkaus");
+    const pisteetTulos = document.getElementById("pisteet");
+    const klikkaus = document.getElementById("klikkaus");
 
     let pisteet = 0;
 
-    klikkausElement.addEventListener("click", () => {
+    klikkaus.addEventListener("click", () => {
         pisteet++;
-        pisteetElement.textContent = `Pisteet: ${pisteet}`;
+        pisteetElement.textContent = `Pisteet: ${pisteetTulos}`;
     });
 });
