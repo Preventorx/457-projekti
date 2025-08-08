@@ -1,11 +1,14 @@
-document.addEventListener("DOMContetLoaded", () => {
-    const pisteetTulos = document.getElementById("pisteet");
-    const klikkaus = document.getElementById("klikkaus");
+let pisteet = 0;
 
-    let pisteet = 0;
+const pisteetTulos = document.getElementById("pisteet");
+const tykki = document.getElementById("tykki");
 
-    klikkaus.addEventListener("click", () => {
+tykki.addEventListener("click", () => {
         pisteet++;
-        pisteetElement.textContent = `Pisteet: ${pisteetTulos}`;
+        pisteetTulos.textContent = `Pisteet: ${pisteet}`;
+        tykki.classList.add("ammu");
+
+        setTimeout(() => {
+            tykki.classList.remove("ammu");
+        }, 500);
     });
-});
