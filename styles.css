@@ -4,10 +4,6 @@ body {
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background-image: url('/images/tausta.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     margin: 0;
     overflow: hidden;
 }
@@ -15,25 +11,72 @@ body {
 .game-container {
     position: relative;
     width: 300px;
-    height: 200px;    
+    height: 500px;    
     text-align: center;
-
+    background-image: url('/images/tausta.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.tykki {
+#ammukset {
+    position: absolute;
+    bottom: 0%;
+    left: 50%;
+}
+
+.ammus {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-image: url('/images/ammus.jpg');
+    background-size: cover;
+    animation: tulta 1s linear forwards;
+}
+
+@keyframes tulta {
+    0% {transform: translateY(0)}
+    100% {transform: translateY(-900px);}
+}
+
+#tykki {
+    position: absolute;
+    bottom: 7%;
+    left: 50%;
     width: 10%;
     height: 10%;
+    transition: transform 0.1s;
     cursor: crosshair;
     color:deeppink;
-    transition: transform 0.1s;
 }
 
-.tykki.ammu {
-    animation: fire 0.5s;
+#tykki.ammu {
+    animation: ammu 0.5s;
 }
 
 @keyframes ammu {
     0% {transform: translateX(0);}
-    50% {transform: translateX(0);}
+    50% {transform: translateY(30px);}
     100% {transform: translateX(0);}
+}
+
+#vihut {
+    position: absolute;
+    top: 0;
+    left: 50%;
+}
+
+.vihu {
+    position: absolute;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    background-image: url('/images/vihu.jpg');
+    background-size: cover;
+    animation: lensi 5s linear forwards;
+}
+
+@keyframes lensi {
+    0% {transform: translateY(0);}
+    100% {transform: translateY(900px);}
 }
