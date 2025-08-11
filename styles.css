@@ -36,7 +36,7 @@ body {
 
 @keyframes tulta {
     0% {transform: translateY(0)}
-    100% {transform: translateY(-900px);}
+    100% {transform: translateY(-500px);}
 }
 
 #tykki {
@@ -62,13 +62,13 @@ body {
 
 #vihut {
     position: absolute;
-    top: 0;
-    left: 50%;
+    top: 200;
+    left: 0;
 }
 
 .vihu {
     position: absolute;
-    top: 0;
+    top: 200;
     width: 30px;
     height: 30px;
     background-image: url('/images/vihu.jpg');
@@ -78,5 +78,5 @@ body {
 
 @keyframes lensi {
     0% {transform: translateY(0);}
-    100% {transform: translateY(900px);}
+    100% {transform: translateY(500px);}
 }

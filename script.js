@@ -30,6 +30,7 @@ function ammuAmmus() {
 function luoVihu() {
     const vihu = document.createElement("div");
     vihu.classList.add("vihu");
+    vihu.style.left = `${Math.random() * 240}px`;
     vihuLista.appendChild(vihu);
 
     setTimeout(() => {
