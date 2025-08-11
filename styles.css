@@ -31,6 +31,7 @@ body {
     height: 10px;
     background-image: url('/images/ammus.jpg');
     background-size: cover;
+    transform-origin: bottom center;
     animation: tulta 1s linear forwards;
 }
 
@@ -45,9 +46,11 @@ body {
     left: 50%;
     width: 10%;
     height: 10%;
+    background-image: url('/images/tykki.jpg');
+    background-size: cover;
     transition: transform 0.1s;
     cursor: crosshair;
-    color:deeppink;
+    color: deeppink;
 }
 
 #tykki.ammu {
@@ -78,5 +81,5 @@ body {
 
 @keyframes lensi {
     0% {transform: translateY(0);}
-    100% {transform: translateY(500px);}
+    100% {transform: translateY(200px);}
 }
