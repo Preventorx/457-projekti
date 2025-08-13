@@ -6,6 +6,13 @@ const ammuksetLaatikko = document.getElementById("ammukset");
 const vihuLista = document.getElementById("vihut");
 const gameContainer = document.querySelector(".game-container");
 
+gameContainer.addEventListener("mousemove", (e) => {
+    const gameRect = gameContainer.getBoundingClientRect();
+    const mouseX = e.clientX - gameRect.left;
+
+    tykkiX = Math.max(0, Math.min(mouseX - (tykki.offsetWidth/2), gameContainer.offsetWidth - tykki.offsetWidth));
+    tykki.style.left = `${tykkiX}px`;
+});
 
 tykki.addEventListener("click", () => {
     ammuAmmus();
@@ -20,15 +27,42 @@ tykki.addEventListener("click", () => {
 
 
 function ammuAmmus() {
-    const tykkiRect = tykki.getBoundingClientRect();
     const ammus = document.createElement("div");
+    const tykkiRect = tykki.getBoundingClientRect();
 
     ammus.classList.add("ammus");
+
+    ammus.style.left = `${tykkiRect.left + (tykkiRect.width/2) - 5}px`;
+    ammus.style.bottom = `${window.innerHeight - tykkiRect.bottom}px`;
+
     ammuksetLaatikko.appendChild(ammus);
+    activeAmmus = ammus;
 
     setTimeout(() => {
-        ammus.remove();
+        if (ammus.parentNode){
+            ammus.remove();
+        }
     }, 1000);
+}
+
+
+function tarkistaOsuma() {
+    if (!activeAmmus) return;
+
+    const vihut = document.querySelectorAll(".vihu");
+    const ammusRect = ammus.getBoundingClientRect();
+
+    vihut.forEach(vihu => {
+        const vihuRect = vihu.getBoundingClientRect();
+
+        if (ammusRect.right > vihuRect.left && ammusRect.left < vihuRect.right && ammusRect.bottom > vihuRect.top && ammusRect.top < vihuRect.bottom) {
+            pisteet += 10;
+            pisteetTulos.textContent = `Pisteet: ${pisteet}`;
+            activeAmmus.remove();
+            vihu.remove();
+            activeAmmus = null;
+        }
+    })
 }
 
 
@@ -47,23 +81,3 @@ function luoVihu() {
 setInterval(luoVihu, 3000);
 
 setInterval(tarkistaOsuma, 100);
-
-
-function tarkistaOsuma() {
-    const ammukset = document.querySelectorAll(".ammus");
-    const vihut = document.querySelectorAll(".vihu");
-
-    ammukset.forEach(ammus => {
-        vihut.forEach(vihu => {
-            const ammusRect = ammus.getBoundingClientRect();
-            const vihuRect = vihu.getBoundingClientRect();
-
-            if (ammusRect.right > vihuRect.left && ammusRect.left < vihuRect.right && ammusRect.bottom > vihuRect.top && ammusRect.top < vihuRect.bottom) {
-                pisteet += 10;
-                pisteetTulos.textContent = `Pisteet: ${pisteet}`;
-                ammus.remove();
-                vihu.remove();
-            }
-        })
-    })
-}
