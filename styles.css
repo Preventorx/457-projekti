@@ -21,8 +21,9 @@ body {
 
 #ammukset {
     position: absolute;
-    bottom: 0%;
+    bottom: 0;
     left: 50%;
+    pointer-events: none;
 }
 
 .ammus {

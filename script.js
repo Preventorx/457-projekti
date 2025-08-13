@@ -1,4 +1,5 @@
 let pisteet = 0;
+let activeAmmus = null;
 
 const pisteetTulos = document.getElementById("pisteet");
 const tykki = document.getElementById("tykki");
@@ -31,9 +32,6 @@ function ammuAmmus() {
     const tykkiRect = tykki.getBoundingClientRect();
 
     ammus.classList.add("ammus");
-
-    ammus.style.left = `${tykkiRect.left + (tykkiRect.width/2) - 5}px`;
-    ammus.style.bottom = `${window.innerHeight - tykkiRect.bottom}px`;
 
     ammuksetLaatikko.appendChild(ammus);
     activeAmmus = ammus;
