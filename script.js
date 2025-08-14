@@ -13,12 +13,11 @@ gameContainer.addEventListener("mousemove", (e) => {
 
     tykkiX = Math.max(0, Math.min(mouseX - (tykki.offsetWidth/2), gameContainer.offsetWidth - tykki.offsetWidth));
     tykki.style.left = `${tykkiX}px`;
+    ammuksetLaatikko.style.left = `${tykkiX}px`;
 });
 
 tykki.addEventListener("click", () => {
     ammuAmmus();
-    pisteet++;
-    pisteetTulos.textContent = `Pisteet: ${pisteet}`;
     tykki.classList.add("ammu");
 
     setTimeout(() => {
@@ -29,16 +28,20 @@ tykki.addEventListener("click", () => {
 
 function ammuAmmus() {
     const ammus = document.createElement("div");
-    const tykkiRect = tykki.getBoundingClientRect();
 
     ammus.classList.add("ammus");
+
+    ammus.style.transformOrigin = "center bottom";
+
+    ammus.style.animation = "tulta 1s linear forwards";
 
     ammuksetLaatikko.appendChild(ammus);
     activeAmmus = ammus;
 
     setTimeout(() => {
-        if (ammus.parentNode){
+        if (ammus.parentNode && !ammus.hit) {
             ammus.remove();
+            activeAmmus = null;
         }
     }, 1000);
 }
@@ -48,16 +51,24 @@ function tarkistaOsuma() {
     if (!activeAmmus) return;
 
     const vihut = document.querySelectorAll(".vihu");
-    const ammusRect = ammus.getBoundingClientRect();
+    const ammusRect = activeAmmus.getBoundingClientRect();
+    const ammuksetRect = ammuksetLaatikko.getBoundingClientRect();
 
     vihut.forEach(vihu => {
         const vihuRect = vihu.getBoundingClientRect();
+        
+        const overlapX = Math.min(ammusRect.right, vihuRect.right) - Math.max(ammusRect.left, vihuRect.left);
+        const overlapY = Math.min(ammusRect.bottom, vihuRect.bottom) - Math.max(ammusRect.top, vihuRect.top);
 
-        if (ammusRect.right > vihuRect.left && ammusRect.left < vihuRect.right && ammusRect.bottom > vihuRect.top && ammusRect.top < vihuRect.bottom) {
+        if (overlapX > 0 && overlapY > 0) {
+            activeAmmus.hit = true;
+
             pisteet += 10;
             pisteetTulos.textContent = `Pisteet: ${pisteet}`;
+
             activeAmmus.remove();
             vihu.remove();
+
             activeAmmus = null;
         }
     })

@@ -22,8 +22,9 @@ body {
 #ammukset {
     position: absolute;
     bottom: 0;
-    left: 50%;
+    left: 0;
     pointer-events: none;
+    transform-origin: center
 }
 
 .ammus {
@@ -32,8 +33,6 @@ body {
     height: 10px;
     background-image: url('/images/ammus.jpg');
     background-size: cover;
-    transform-origin: bottom center;
-    animation: tulta 1s linear forwards;
 }
 
 @keyframes tulta {
