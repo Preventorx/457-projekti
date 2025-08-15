@@ -1,11 +1,24 @@
 let pisteet = 0;
 let activeAmmus = null;
+let tykkiX = 0;
+let voiAmpua = true;
+let ampumisNopeus = 2000;
 
 const pisteetTulos = document.getElementById("pisteet");
 const tykki = document.getElementById("tykki");
 const ammuksetLaatikko = document.getElementById("ammukset");
 const vihuLista = document.getElementById("vihut");
 const gameContainer = document.querySelector(".game-container");
+const ostaNopeusNappi = document.getElementById("ostaNopeus");
+
+ostaNopeusNappi.addEventListener("click", () => {
+    if (pisteet >= 100) {
+        pisteet -= 100;
+        pisteetTulos.textContent = `Pisteet: ${pisteet}`;
+        ampumisNopeus = Math.max(200, ampumisNopeus - 200);
+        ostaNopeusNappi.innerHTML = `100p<br>${ampumisNopeus}ms`;
+    }
+});
 
 gameContainer.addEventListener("mousemove", (e) => {
     const gameRect = gameContainer.getBoundingClientRect();
@@ -17,17 +30,26 @@ gameContainer.addEventListener("mousemove", (e) => {
 });
 
 tykki.addEventListener("click", () => {
-    ammuAmmus();
-    tykki.classList.add("ammu");
+    if (voiAmpua) {
+        ammuAmmus();
+        tykki.classList.add("ammu");
 
-    setTimeout(() => {
-        tykki.classList.remove("ammu");
-    }, 500);
-});
+        voiAmpua = false;
+    
+        setTimeout(() => {
+            tykki.classList.remove("ammu");
+        }, 500);
+
+        setTimeout(() => {
+            voiAmpua = true;
+        }, ampumisNopeus);
+    }
+    });
 
 
 function ammuAmmus() {
     const ammus = document.createElement("div");
+    ammus.hit = false;
 
     ammus.classList.add("ammus");
 
