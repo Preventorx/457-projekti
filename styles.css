@@ -84,11 +84,10 @@ body {
     100% {transform: translateY(200px);}
 }
 
-#ostaNopeus {
+#ostaNopeus,
+#ostaVihuInterval {
     position: absolute;
-    top: 1px;
-    left: 1px;
-    width: 40px;
+    width: 50px;
     height: 40px;
     padding: 5px;
     background-color: #4caf50;
@@ -102,7 +101,18 @@ body {
     text-align: center;
 }
 
-#ostaNopeus:disabled {
+#ostaNopeus {
+    top: 0px;
+    left: 2px;
+}
+
+#ostaVihuInterval {
+    top: 40px;
+    left: 2px;
+}
+
+#ostaNopeus:disabled,
+#ostaVihuInterval:disabled {
     background-color: #cccccc;
     cursor: not-allowed;
 }

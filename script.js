@@ -3,6 +3,9 @@ let activeAmmus = null;
 let tykkiX = 0;
 let voiAmpua = true;
 let ampumisNopeus = 2000;
+let ampumisOstoHinta = 10;
+let vihuIntervalOstoHinta = 30;
+let vihuInterval = 3000;
 
 const pisteetTulos = document.getElementById("pisteet");
 const tykki = document.getElementById("tykki");
@@ -10,15 +13,29 @@ const ammuksetLaatikko = document.getElementById("ammukset");
 const vihuLista = document.getElementById("vihut");
 const gameContainer = document.querySelector(".game-container");
 const ostaNopeusNappi = document.getElementById("ostaNopeus");
+const ostaVihuIntervalNappi = document.getElementById("ostaVihuInterval");
 
 ostaNopeusNappi.addEventListener("click", () => {
-    if (pisteet >= 100) {
-        pisteet -= 100;
+    if (pisteet >= ampumisOstoHinta) {
+        pisteet -= ampumisOstoHinta;
         pisteetTulos.textContent = `Pisteet: ${pisteet}`;
         ampumisNopeus = Math.max(200, ampumisNopeus - 200);
-        ostaNopeusNappi.innerHTML = `100p<br>${ampumisNopeus}ms`;
+        ampumisOstoHinta += 10;
+        ostaNopeusNappi.innerHTML = `${ampumisOstoHinta}p<br>${ampumisNopeus}ms`;
     }
 });
+
+ostaVihuIntervalNappi.addEventListener("click", () => {
+    if (pisteet >= vihuIntervalOstoHinta) {
+        pisteet -= vihuIntervalOstoHinta;
+        pisteetTulos.textContent = `Pisteet: ${pisteet}`;
+        vihuInterval = Math.max(1000, vihuInterval - 500);
+        vihuIntervalOstoHinta += 10;
+        ostaVihuIntervalNappi.innerHTML = `${vihuIntervalOstoHinta}p<br>${vihuInterval}ms`;
+        clearTimeout(vihuTimer);
+        kaynnistaVihuTimer();
+    }
+})
 
 gameContainer.addEventListener("mousemove", (e) => {
     const gameRect = gameContainer.getBoundingClientRect();
@@ -74,7 +91,6 @@ function tarkistaOsuma() {
 
     const vihut = document.querySelectorAll(".vihu");
     const ammusRect = activeAmmus.getBoundingClientRect();
-    const ammuksetRect = ammuksetLaatikko.getBoundingClientRect();
 
     vihut.forEach(vihu => {
         const vihuRect = vihu.getBoundingClientRect();
@@ -109,6 +125,12 @@ function luoVihu() {
     }, 5000);
 }
 
-setInterval(luoVihu, 3000);
 
-setInterval(tarkistaOsuma, 100);
+function kaynnistaVihuTimer() {
+    luoVihu();
+    vihuTimer = setTimeout(kaynnistaVihuTimer, vihuInterval);
+}
+
+kaynnistaVihuTimer();
+
+setInterval(tarkistaOsuma, 10);
