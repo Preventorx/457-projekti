@@ -13,7 +13,7 @@ body {
     width: 300px;
     height: 500px;    
     text-align: center;
-    background-image: url('/images/tausta.jpg');
+    background-image: url('/457-projekti/images/tausta.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -31,7 +31,7 @@ body {
     position: absolute;
     width: 10px;
     height: 10px;
-    background-image: url('/images/ammus.jpg');
+    background-image: url('/457-projekti/images/ammus.jpg');
     background-size: cover;
 }
 
@@ -46,7 +46,7 @@ body {
     left: 50%;
     width: 10%;
     height: 10%;
-    background-image: url('/images/tykki.jpg');
+    background-image: url('/457-projekti/images/tykki.jpg');
     background-size: cover;
     transition: transform 0.1s;
     cursor: crosshair;
@@ -74,7 +74,7 @@ body {
     top: 200;
     width: 30px;
     height: 30px;
-    background-image: url('/images/vihu.jpg');
+    background-image: url('/457-projekti/images/vihu.jpg');
     background-size: cover;
     animation: lensi 5s linear forwards;
 }

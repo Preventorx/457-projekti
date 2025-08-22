@@ -15,6 +15,7 @@ const gameContainer = document.querySelector(".game-container");
 const ostaNopeusNappi = document.getElementById("ostaNopeus");
 const ostaVihuIntervalNappi = document.getElementById("ostaVihuInterval");
 
+// Ostopainikkeen tapahtumat
 ostaNopeusNappi.addEventListener("click", () => {
     if (pisteet >= ampumisOstoHinta) {
         pisteet -= ampumisOstoHinta;
@@ -25,6 +26,7 @@ ostaNopeusNappi.addEventListener("click", () => {
     }
 });
 
+// Toisen ostopainikkeen tapahtumat
 ostaVihuIntervalNappi.addEventListener("click", () => {
     if (pisteet >= vihuIntervalOstoHinta) {
         pisteet -= vihuIntervalOstoHinta;
@@ -37,6 +39,7 @@ ostaVihuIntervalNappi.addEventListener("click", () => {
     }
 })
 
+// Tykki ei häivy pelialueelta
 gameContainer.addEventListener("mousemove", (e) => {
     const gameRect = gameContainer.getBoundingClientRect();
     const mouseX = e.clientX - gameRect.left;
@@ -133,4 +136,5 @@ function kaynnistaVihuTimer() {
 
 kaynnistaVihuTimer();
 
+// Tarkistetaan osumat usein
 setInterval(tarkistaOsuma, 10);
